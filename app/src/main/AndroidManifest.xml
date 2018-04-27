@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GuitarActivity"></activity>
+        <activity android:name=".GuitarActivity" />
+        <activity android:name=".PianoActivity"></activity>
     </application>
 
 </manifest>
