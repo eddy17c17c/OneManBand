@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".GuitarActivity" />
-        <activity android:name=".PianoActivity"></activity>
+        <activity android:name=".PianoActivity" />
+        <activity android:name=".RingActivity"></activity>
     </application>
 
 </manifest>
