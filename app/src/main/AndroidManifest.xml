@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".GuitarActivity" />
         <activity android:name=".PianoActivity" />
-        <activity android:name=".RingActivity"></activity>
+        <activity android:name=".RingActivity" />
+        <activity android:name=".NavActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home"
+        android:icon="@mipmap/ic_home_black_24dp"
+        android:title="Home"/>
+    <item android:id="@+id/nav_mix"
+        android:icon="@mipmap/ic_home_black_24dp"
+        android:title="Mix"/>
+    <item android:id="@+id/nav_list"
+        android:icon="@mipmap/ic_queue_music_black_24dp"
+        android:title="List"/>
+    <item android:id="@+id/nav_drum"
+        android:title="Drum"/>
+    <item android:id="@+id/nav_piano"
+        android:title="Piano"/>
+    <item android:id="@+id/nav_ring"
+        android:title="Ring"/>
+    <item android:id="@+id/nav_guitar"
+        android:title="Guitar"/>
+
+</menu>
