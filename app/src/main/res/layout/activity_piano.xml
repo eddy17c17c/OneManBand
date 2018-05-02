@@ -72,12 +72,12 @@
         android:layout_marginTop="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Mi"
-        app:layout_constraintStart_toEndOf="@+id/Do1"
+        app:layout_constraintStart_toEndOf="@+id/Do"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:srcCompat="?attr/colorBackgroundFloating" />
 
     <ImageButton
-        android:id="@+id/Do1"
+        android:id="@+id/Do"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="46dp"
