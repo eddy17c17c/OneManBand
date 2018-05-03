@@ -17,7 +17,7 @@ public class RingActivity extends NavActivity {
         View contentView=inflater.inflate(R.layout.activity_ring,null);
         mDrawerLayout.addView(contentView,0);
 
-       // setContentView(R.layout.activity_ring);
+        setContentView(R.layout.activity_ring);
 
 
         ring=MediaPlayer.create(this,R.raw.ring);

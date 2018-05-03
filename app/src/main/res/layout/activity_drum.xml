@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.eddy.onemanband.DrumActivity">
+    android:launchMode="singleTask"
+    android:screenOrientation="landscape"
+    tools:context="com.example.eddy.onemanband.DrumActivity"
+    tools:layout_editor_absoluteY="25dp">
 
     <ImageView
         android:id="@+id/imageView2"
