@@ -43,4 +43,12 @@ public class Drum2Activity extends AppCompatActivity {
 
     }
     public void playD1(View view){getSoundD1.start();}
+    public void playD2(View view){getSoundD2.start();}
+    public void playD3(View view){getSoundD3.start();}
+    public void playD4(View view){getSoundD4.start();}
+    public void playC1(View view){getSoundC1.start();}
+    public void playC2(View view){getSoundC2.start();}
+    public void playC3(View view){getSoundC3.start();}
+    public void playC4(View view){getSoundC4.start();}
+    public void playBass(View view){getSoundBass.start();}
 }
