@@ -23,7 +23,7 @@ public class Drum2Activity extends NavActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater=(LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView=inflater.inflate(R.layout.activity_ring,null);
+        View contentView=inflater.inflate(R.layout.activity_drum2,null);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mDrawerLayout.addView(contentView,0);
 

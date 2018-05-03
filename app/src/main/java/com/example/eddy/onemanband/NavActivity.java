@@ -62,6 +62,10 @@ public class NavActivity extends AppCompatActivity {
                         intent=new Intent(getApplicationContext(),PianoActivity.class);
                         startActivity(intent);
                         return true;
+                    case R.id.nav_drum:
+                        intent=new Intent(getApplicationContext(),Drum2Activity.class);
+                        startActivity(intent);
+                        return true;
 
                 }
                 return true;
