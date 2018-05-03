@@ -49,7 +49,7 @@ public class MainActivity extends NavActivity {
         drumImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToDrumActivity=new Intent(getApplicationContext(),DrumActivity.class);
+                Intent goToDrumActivity=new Intent(getApplicationContext(),Drum2Activity.class);
                 startActivity(goToDrumActivity);
             }
         });
