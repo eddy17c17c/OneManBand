@@ -58,6 +58,11 @@ public class NavActivity extends AppCompatActivity {
                         startActivity(intent);
                         return true;
 
+                    case R.id.nav_piano:
+                        intent=new Intent(getApplicationContext(),PianoActivity.class);
+                        startActivity(intent);
+                        return true;
+
                 }
                 return true;
             }
