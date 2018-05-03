@@ -1,6 +1,7 @@
 package com.example.eddy.onemanband;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ public class PianoActivity extends NavActivity {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater=(LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView=inflater.inflate(R.layout.activity_piano,null);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mDrawerLayout.addView(contentView,0);
 
         Do=MediaPlayer.create(this,R.raw.do111);

@@ -1,6 +1,7 @@
 package com.example.eddy.onemanband;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ public class RingActivity extends NavActivity {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater=(LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView=inflater.inflate(R.layout.activity_ring,null);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mDrawerLayout.addView(contentView,0);
 
         ring=MediaPlayer.create(this,R.raw.ring);
@@ -24,7 +26,11 @@ public class RingActivity extends NavActivity {
     }
 
     public void playRing(View view){
+        if(ring.isPlaying()) {
+            ring.stop();
+        }
          ring.start();
+
     }
 
 }
