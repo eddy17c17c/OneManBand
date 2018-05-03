@@ -11,88 +11,66 @@
 
     <ImageButton
         android:id="@+id/Do"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Re"
-        app:layout_constraintEnd_toStartOf="@+id/Re"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Re"
-        app:srcCompat="?attr/colorBackgroundFloating" />
+        android:layout_width="79dp"
+        android:layout_height="313dp"
+        android:onClick="playDo"
+        app:srcCompat="?attr/colorBackgroundFloating"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="44dp" />
 
     <ImageButton
         android:id="@+id/Re"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="7dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Mi"
-        app:layout_constraintEnd_toStartOf="@+id/Mi"
-        app:layout_constraintStart_toEndOf="@+id/Do"
-        app:layout_constraintTop_toTopOf="@+id/Mi"
-        app:srcCompat="?attr/colorBackgroundFloating" />
+        android:layout_width="79dp"
+        android:layout_height="1dp"
+        app:srcCompat="?attr/colorBackgroundFloating"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="44dp" />
 
     <ImageButton
         android:id="@+id/Mi"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Fa"
-        app:layout_constraintEnd_toStartOf="@+id/Fa"
-        app:layout_constraintStart_toEndOf="@+id/Re"
-        app:layout_constraintTop_toTopOf="@+id/Fa"
-        app:srcCompat="?attr/colorBackgroundFloating" />
+        android:layout_width="79dp"
+        android:layout_height="1dp"
+        app:srcCompat="?attr/colorBackgroundFloating"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="44dp" />
 
     <ImageButton
         android:id="@+id/Fa"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/So"
-        app:layout_constraintEnd_toStartOf="@+id/So"
-        app:layout_constraintStart_toEndOf="@+id/Mi"
-        app:layout_constraintTop_toTopOf="@+id/So"
-        app:srcCompat="?attr/colorBackgroundFloating" />
+        android:layout_width="79dp"
+        android:layout_height="1dp"
+        app:srcCompat="?attr/colorBackgroundFloating"
+        tools:layout_editor_absoluteX="257dp"
+        tools:layout_editor_absoluteY="44dp" />
 
     <ImageButton
         android:id="@+id/So"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="7dp"
-        app:layout_constraintBottom_toBottomOf="@+id/La"
-        app:layout_constraintEnd_toStartOf="@+id/La"
-        app:layout_constraintStart_toEndOf="@+id/Fa"
-        app:layout_constraintTop_toTopOf="@+id/La"
-        app:srcCompat="?attr/colorBackgroundFloating" />
+        android:layout_width="79dp"
+        android:layout_height="1dp"
+        app:srcCompat="?attr/colorBackgroundFloating"
+        tools:layout_editor_absoluteX="336dp"
+        tools:layout_editor_absoluteY="44dp" />
 
     <ImageButton
         android:id="@+id/La"
-        android:layout_width="0dp"
+        android:layout_width="79dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toStartOf="@+id/Ti"
-        app:layout_constraintStart_toEndOf="@+id/So"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/colorBackgroundFloating" />
+        app:srcCompat="?attr/colorBackgroundFloating"
+        tools:layout_editor_absoluteX="422dp"
+        tools:layout_editor_absoluteY="44dp" />
 
     <ImageButton
         android:id="@+id/Ti"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/La"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/La"
-        app:layout_constraintTop_toTopOf="@+id/La"
-        app:srcCompat="?attr/colorBackgroundFloating" />
+        android:layout_width="79dp"
+        android:layout_height="1dp"
+        app:srcCompat="?attr/colorBackgroundFloating"
+        tools:layout_editor_absoluteX="513dp"
+        tools:layout_editor_absoluteY="44dp" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
+        android:layout_width="592dp"
         android:layout_height="448dp"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pianokey" />
 
 </android.support.constraint.ConstraintLayout>
