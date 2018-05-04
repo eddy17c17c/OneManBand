@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.media.Image;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +12,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class RingActivity extends NavActivity {
-    MediaPlayer ring;
+    private int sound_ring;
+    private SoundPool soundPool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +23,13 @@ public class RingActivity extends NavActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mDrawerLayout.addView(contentView,0);
 
-        ring=MediaPlayer.create(this,R.raw.ring);
+        soundPool=new SoundPool.Builder().setMaxStreams(5).build();
+        sound_ring=soundPool.load(this,R.raw.ring,1);
 
     }
 
     public void playRing(View view){
-        if(ring.isPlaying()) {
-            ring.stop();
-        }
-         ring.start();
-
+        soundPool.play(sound_ring,1,1,1,0,1);
     }
 
 }
