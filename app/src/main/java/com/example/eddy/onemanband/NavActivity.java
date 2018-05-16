@@ -9,9 +9,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-
-import java.nio.channels.InterruptedByTimeoutException;
 
 public class NavActivity extends AppCompatActivity {
 
@@ -26,9 +26,9 @@ public class NavActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nav);
 
         mToolbar=(Toolbar)findViewById(R.id.nav_action);
-        setSupportActionBar(mToolbar);
+       setSupportActionBar(mToolbar);
 
-        //for nav menu
+          //for nav menu
         mDrawerLayout=(DrawerLayout)findViewById(R.id.drawerLayout);
         mToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
 
@@ -67,19 +67,27 @@ public class NavActivity extends AppCompatActivity {
                         startActivity(intent);
                         return true;
 
+
                 }
                 return true;
             }
         });
     }
 
-
-    //Enable click on nav button
+   //Enable click on nav button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
             return true;
         }
+
+        switch(item.getItemId()){
+            case R.id.action_record:
+                //to do
+                return true;
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

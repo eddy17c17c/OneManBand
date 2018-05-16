@@ -6,6 +6,8 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
 public class PianoActivity extends NavActivity {
@@ -31,6 +33,13 @@ public class PianoActivity extends NavActivity {
         sound_Ti=soundPool.load(this,R.raw.ti,1);
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.navigation_button,menu);
+        return true;
     }
 
     public void playDo(View view){
