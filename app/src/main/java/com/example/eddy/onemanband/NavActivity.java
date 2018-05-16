@@ -133,7 +133,7 @@ public class NavActivity extends AppCompatActivity {
                 if(checkPermission()) {
 
                     AudioSavePathInDevice =
-                            Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +
+                            Environment.getExternalStorageDirectory().getAbsolutePath() + "/Onemanband"+"/" +
                                     CreateRandomAudioFileName(5) + "AudioRecording.3gp";
 
                     MediaRecorderReady();
@@ -199,7 +199,7 @@ public class NavActivity extends AppCompatActivity {
                                         // edit text
                                         result = userInput.getText().toString();
                                         oldFile = new File(AudioSavePathInDevice);
-                                        latestname = new File("/sdcard/"+result+".3gp");
+                                        latestname = new File(Environment.getExternalStorageDirectory().getPath()+"/Onemanband/"+result+".3gp");
                                         boolean success = oldFile .renameTo(latestname );
                                     }
                                 });

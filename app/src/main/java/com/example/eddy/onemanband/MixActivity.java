@@ -103,7 +103,7 @@ public class MixActivity extends NavActivity {
                 final ArrayList<File> songs=findSongs(new File(root));
                 items=new String[songs.size()];
                 for(int i=0;i<songs.size();i++) {
-                    items[i]=songs.get(i).getName().toString().replace(".mp3","");
+                    items[i]=songs.get(i).getName().toString().replace(".3gp","");
                 }
 
                 ArrayAdapter<String> adp=new ArrayAdapter<String>(getApplicationContext(),R.layout.song_layout,R.id.textView,items);
@@ -145,31 +145,13 @@ public class MixActivity extends NavActivity {
             if(singleFile.isDirectory() && !singleFile.isHidden()){
                 mp3s.addAll(findSongs(singleFile));
             }else{
-                if(singleFile.getName().endsWith(".mp3")){
+                if(singleFile.getName().endsWith(".3gp")){
                     mp3s.add(singleFile);
                 }
             }
         }
 
         return mp3s;
-    }
-
-
-
-/*
-    @Override
-    protected void onNewIntent(Intent intent){
-        super.onNewIntent(intent);
-        i=getIntent();
-        b=i.getExtras();
-
-        try {
-            if (b.containsKey("pos")) {
-                selectedSong();
-            }
-        }catch (Exception e){
-
-        }
     }
 
     protected  void selectedSong(){
@@ -190,7 +172,7 @@ public class MixActivity extends NavActivity {
                 break;
         }
     }
-    */
+
 
 
 
