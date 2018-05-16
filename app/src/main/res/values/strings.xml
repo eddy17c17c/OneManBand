@@ -3,6 +3,8 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="action_record">record</string>
+    <string name="action_play">play</string>
+    <string name="action_stop">stop</string>
     <string name="title_activity_mix">MixActivity</string>
     <string name="title_activity_music_list">MusicListActivity</string>
 </resources>

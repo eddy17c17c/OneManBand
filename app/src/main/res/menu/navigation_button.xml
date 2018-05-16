@@ -4,11 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
+    <item android:id="@+id/action_play"
+    android:title="@string/action_play"
+    android:orderInCategory="80"
+    android:icon="@mipmap/baseline_play_arrow_black_18"
+    app:showAsAction="always"
+    />
+
+    <item android:id="@+id/action_stop"
+        android:title="@string/action_stop"
+        android:orderInCategory="90"
+        android:icon="@mipmap/baseline_stop_black_18"
+        app:showAsAction="always"
+        />
+
     <item android:id="@+id/action_record"
           android:title="@string/action_record"
-          android:orderInCategory="80"
+          android:orderInCategory="100"
           android:icon="@mipmap/baseline_mic_black_18"
-          app:showAsAction="ifRoom"
+          app:showAsAction="always"
         />
 
 </menu>
