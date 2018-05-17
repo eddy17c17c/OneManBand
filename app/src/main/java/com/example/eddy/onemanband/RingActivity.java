@@ -20,6 +20,7 @@ public class RingActivity extends NavActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instrumentType = 2;
         LayoutInflater inflater=(LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView=inflater.inflate(R.layout.activity_ring,null);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -39,6 +40,7 @@ public class RingActivity extends NavActivity {
 
     public void playRing(View view){
         soundPool.play(sound_ring,1,1,1,0,1);
+        Ringcheck=true;
     }
 
 }

@@ -19,10 +19,17 @@
         />
 
     <item android:id="@+id/action_record"
-          android:title="@string/action_record"
-          android:orderInCategory="100"
-          android:icon="@mipmap/baseline_mic_black_18"
-          app:showAsAction="always"
+    android:title="@string/action_record"
+    android:orderInCategory="100"
+    android:icon="@mipmap/baseline_mic_black_18"
+    app:showAsAction="always"
+    />
+
+    <item android:id="@+id/action_writer"
+        android:title="@string/action_writer"
+        android:orderInCategory="110"
+        android:icon="@drawable/images"
+        app:showAsAction="always"
         />
 
 </menu>

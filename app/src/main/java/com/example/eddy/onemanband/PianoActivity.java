@@ -18,6 +18,7 @@ public class PianoActivity extends NavActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instrumentType = 1;
         LayoutInflater inflater=(LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView=inflater.inflate(R.layout.activity_piano,null);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -44,24 +45,31 @@ public class PianoActivity extends NavActivity {
 
     public void playDo(View view){
         soundPool.play(sound_Do,1,1,1,0,1);
+        Docheck=true;
     }
     public void playRe(View view){
         soundPool.play(sound_Re,1,1,1,0,1);
+        Recheck=true;
     }
     public void playMi(View view){
         soundPool.play(sound_Mi,1,1,1,0,1);
+        Micheck=true;
     }
     public void playFa(View view){
         soundPool.play(sound_Fa,1,1,1,0,1);
+        Facheck=true;
     }
     public void playSo(View view){
         soundPool.play(sound_So,1,1,1,0,1);
+        Socheck=true;
     }
     public void playLa(View view){
         soundPool.play(sound_La,1,1,1,0,1);
+        Lacheck=true;
     }
     public void playTi(View view){
         soundPool.play(sound_Ti,1,1,1,0,1);
+        Ticheck=true;
     }
 
 

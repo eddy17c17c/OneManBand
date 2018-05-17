@@ -2,6 +2,7 @@ package com.example.eddy.onemanband;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -9,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,7 +26,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.io.File;
 
@@ -54,6 +59,7 @@ public class NavActivity extends AppCompatActivity {
     Button buttonStart, buttonStop, buttonPlayLastRecordAudio,
             buttonStopPlayingRecording ;
     String AudioSavePathInDevice = null;
+    String TxtSavePathInDevice = null;
     MediaRecorder mediaRecorder ;
     Random random ;
     String RandomAudioFileName = "ABCDEFGHIJKLMNOP";
@@ -64,7 +70,239 @@ public class NavActivity extends AppCompatActivity {
     private String result;
     final Context context = this;
 
+    Boolean RecorderStatus = false;
+    Boolean WriterStatus = false;
 
+//Drum
+    public Boolean D1check=false;
+    public Boolean D2check=false;
+    public Boolean D3check=false;
+    public Boolean D4check=false;
+
+    public Boolean C1check=false;
+    public Boolean C2check=false;
+    public Boolean C3check=false;
+    public Boolean C4check=false;
+
+    public Boolean Basscheck=false;
+
+    public boolean writer;
+    public ArrayList<String> tempArray = new ArrayList<String>();
+    public int instrumentType;
+
+//Piano do re mi fa so la Ti do
+
+    public Boolean Docheck=false;
+    public Boolean Recheck=false;
+    public Boolean Micheck=false;
+    public Boolean Facheck=false;
+    public Boolean Socheck=false;
+    public Boolean Lacheck=false;
+    public Boolean Ticheck=false;
+
+//Ring
+
+    public Boolean Ringcheck=false;
+
+
+    private void textWriter(String filename, int type){
+        try {
+            Log.d("Last","Starting writing");
+            File file = new File(TxtSavePathInDevice);
+
+            FileOutputStream fos = new FileOutputStream(file);
+
+            if(type==0){
+                fos.write("Drum ".getBytes());
+                fos.write("Notes Count ".getBytes());
+                fos.write(String.valueOf((tempArray.size())/9).getBytes());
+            }
+            if(type==1){
+                fos.write("Piano ".getBytes());
+                fos.write("Notes Count ".getBytes());
+                fos.write(String.valueOf((tempArray.size())/7).getBytes());
+            }
+            if(type==2){
+                fos.write("Ring ".getBytes());
+                fos.write("Notes Count ".getBytes());
+                fos.write(String.valueOf((tempArray.size())).getBytes());
+            }
+
+            fos.write(" ".getBytes());
+            for(int i=0;i<tempArray.size();i++){
+                fos.write(tempArray.get(i).getBytes());
+            }
+            fos.close();
+            tempArray.clear();
+           // Toast.makeText(getApplicationContext() , "Drum Scope Saved!", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "File Not Found!", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Error saving", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void drumpWriter(final String filename){
+        final Handler handler = new Handler();
+        Log.d("Second","Writer Check");
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                //do something
+                if (D1check == true) {
+                    //Log.d("D1","Third");
+                    tempArray.add("1");
+                    //Log.d("tempArraySize",String.valueOf(tempArray.size()));
+                    D1check=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (D2check == true) {
+                    tempArray.add("1");
+                    D2check=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (D3check == true) {
+                    tempArray.add("1");
+                    D3check=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (D4check == true) {
+                    tempArray.add("1");
+                    D4check=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (C1check == true) {
+                    tempArray.add("1");
+                    C1check=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (C2check == true) {
+                    tempArray.add("1");
+                    C2check=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (C3check == true) {
+                    tempArray.add("1");
+                    C3check=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (C4check == true) {
+                    tempArray.add("1");
+                    C4check=false;
+                } else {
+                    tempArray.add("0");
+                }
+                tempArray.add(" ");
+
+                if(writer==true) {
+                    handler.postDelayed(this, 100);
+                }
+                if(writer==false){
+                    textWriter(filename,0);
+                }
+            }
+        }, 100);
+
+        Log.d("tempArraySize", String.valueOf(tempArray.size()));
+    }
+
+    private void pianoWriter(final String filename){
+        final Handler handler = new Handler();
+        Log.d("Second","Writer Check");
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                //do something
+                if (Docheck == true) {
+                    //Log.d("D1","Third");
+                    tempArray.add("1");
+                    //Log.d("tempArraySize",String.valueOf(tempArray.size()));
+                    Docheck=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (Recheck == true) {
+                    tempArray.add("1");
+                    Recheck=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (Micheck == true) {
+                    tempArray.add("1");
+                    Micheck=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (Facheck == true) {
+                    tempArray.add("1");
+                    Facheck=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (Socheck == true) {
+                    tempArray.add("1");
+                    Socheck=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (Lacheck == true) {
+                    tempArray.add("1");
+                    Lacheck=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (Ticheck == true) {
+                    tempArray.add("1");
+                    Ticheck=false;
+                } else {
+                    tempArray.add("0");
+                }
+                tempArray.add(" ");
+                if(writer==true) {
+                    handler.postDelayed(this, 100);
+                }
+                if(writer==false){
+                    textWriter(filename,1);
+                }
+            }
+        }, 100);
+
+        Log.d("tempArraySize", String.valueOf(tempArray.size()));
+    }
+
+    private void ringWriter(final String filename){
+        final Handler handler = new Handler();
+        Log.d("Second","Writer Check");
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                //do something
+                if (Ringcheck == true) {
+                    //Log.d("D1","Third");
+                    tempArray.add("1");
+                    //Log.d("tempArraySize",String.valueOf(tempArray.size()));
+                    Ringcheck=false;
+                } else {
+                    tempArray.add("0");
+                }
+                tempArray.add(" ");
+                if(writer==true) {
+                    handler.postDelayed(this, 100);
+                }
+                if(writer==false){
+                    textWriter(filename,2);
+                }
+            }
+        }, 100);
+
+        Log.d("tempArraySize", String.valueOf(tempArray.size()));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,32 +367,36 @@ public class NavActivity extends AppCompatActivity {
         random = new Random();
         switch(item.getItemId()){
             case R.id.action_record:
-                //to do
-                if(checkPermission()) {
+                if(RecorderStatus==false){
+                    RecorderStatus=true;
+                    //to do
+                    if(checkPermission()) {
 
-                    AudioSavePathInDevice =
-                            Environment.getExternalStorageDirectory().getAbsolutePath() + "/Onemanband"+"/" +
-                                    CreateRandomAudioFileName(5) + "AudioRecording.3gp";
+                        AudioSavePathInDevice =
+                                Environment.getExternalStorageDirectory().getAbsolutePath() + "/Onemanband"+"/" +
+                                        CreateRandomAudioFileName(5) + "AudioRecording.3gp";
 
-                    MediaRecorderReady();
+                        MediaRecorderReady();
 
-                    try {
-                        mediaRecorder.prepare();
-                        mediaRecorder.start();
-                    } catch (IllegalStateException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        try {
+                            mediaRecorder.prepare();
+                            mediaRecorder.start();
+                        } catch (IllegalStateException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+
+
+                        Toast.makeText(NavActivity.this, "Recording started",
+                                Toast.LENGTH_LONG).show();
+                    } else {
+                        requestPermission();
                     }
-
-
-                    Toast.makeText(NavActivity.this, "Recording started",
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    requestPermission();
                 }
+
 
                 return true;
 
@@ -173,48 +415,102 @@ public class NavActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_stop:
-                mediaRecorder.stop();
+                LayoutInflater li;
+                View promptsView;
+                if(RecorderStatus==true){
+                    RecorderStatus=false;
+                    mediaRecorder.stop();
+                    // get prompts.xml view
+                    li = LayoutInflater.from(context);
+                    promptsView = li.inflate(R.layout.prompts, null);
 
-
-                // get prompts.xml view
-                LayoutInflater li = LayoutInflater.from(context);
-                View promptsView = li.inflate(R.layout.prompts, null);
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
-
-                // set prompts.xml to alertdialog builder
-                alertDialogBuilder.setView(promptsView);
-
-                final EditText userInput = (EditText) promptsView
-                        .findViewById(R.id.editTextDialogUserInput);
-
-                // set dialog message
-                alertDialogBuilder
-                        .setCancelable(false)
-                        .setPositiveButton("OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        // get user input and set it to result
-                                        // edit text
-                                        result = userInput.getText().toString();
-                                        oldFile = new File(AudioSavePathInDevice);
-                                        latestname = new File(Environment.getExternalStorageDirectory().getPath()+"/Onemanband/"+result+".3gp");
-                                        boolean success = oldFile .renameTo(latestname );
-                                    }
-                                });
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
-
-
-                Toast.makeText(NavActivity.this, "Recording Completed",
-                        Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            context);
+                    // set prompts.xml to alertdialog builder
+                    alertDialogBuilder.setView(promptsView);
+                    final EditText userInput = (EditText) promptsView
+                            .findViewById(R.id.editTextDialogUserInput);
+                    // set dialog message
+                    alertDialogBuilder
+                            .setCancelable(false)
+                            .setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,int id) {
+                                            // get user input and set it to result
+                                            // edit text
+                                            result = userInput.getText().toString();
+                                            oldFile = new File(AudioSavePathInDevice);
+                                            latestname = new File(Environment.getExternalStorageDirectory().getPath()+"/Onemanband/"+result+".3gp");
+                                            boolean success = oldFile .renameTo(latestname );
+                                        }
+                                    });
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    // show it
+                    alertDialog.show();
+                    Toast.makeText(NavActivity.this, "Recording Completed",
+                            Toast.LENGTH_LONG).show();
+                }
+                if(WriterStatus==true){
+                    WriterStatus=false;
+                    writer=false;
+                    // get prompts.xml view
+                    li = LayoutInflater.from(context);
+                    promptsView = li.inflate(R.layout.prompts, null);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            context);
+                    // set prompts.xml to alertdialog builder
+                    alertDialogBuilder.setView(promptsView);
+                    final EditText userInput = (EditText) promptsView
+                            .findViewById(R.id.editTextDialogUserInput);
+                    // set dialog message
+                    alertDialogBuilder
+                            .setCancelable(false)
+                            .setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,int id) {
+                                            // get user input and set it to result
+                                            // edit text
+                                            result = userInput.getText().toString();
+                                            oldFile = new File(TxtSavePathInDevice);
+                                            latestname = new File(Environment.getExternalStorageDirectory().getPath()+"/Onemanband/"+result+".txt");
+                                            boolean success = oldFile .renameTo(latestname );
+                                        }
+                                    });
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    // show it
+                    alertDialog.show();
+                    Toast.makeText(NavActivity.this, "Writing Completed",
+                            Toast.LENGTH_LONG).show();
+                }
                 return true;
 
+            case R.id.action_writer:
+                writer=true;
+                if(WriterStatus==false){
+                    WriterStatus=true;
+                    if(checkPermission()) {
+                        TxtSavePathInDevice =
+                                Environment.getExternalStorageDirectory().getAbsolutePath() + "/Onemanband"+"/" +
+                                        CreateRandomAudioFileName(5) + "TxtRecording.txt";
+                        if(instrumentType==0){
+                            drumpWriter(TxtSavePathInDevice);
+                        }
+                        if(instrumentType==1){
+                            pianoWriter(TxtSavePathInDevice);
+                        }
+                        if(instrumentType==2){
+                            ringWriter(TxtSavePathInDevice);
+                        }
+                    } else {
+                        requestPermission();
+                    }
+                    Toast.makeText(NavActivity.this, "Writing started",
+                            Toast.LENGTH_LONG).show();
+                }
+
+                return true;
 
         }
 

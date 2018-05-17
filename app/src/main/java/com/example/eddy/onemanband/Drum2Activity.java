@@ -17,15 +17,16 @@ public class Drum2Activity extends NavActivity {
     private SoundPool soundPool;
     int sound_C1,sound_C2,sound_C3,sound_C4,sound_Bass,sound_D1,sound_D2,sound_D3,sound_D4;
 
+    Boolean Basscheck=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instrumentType = 0;
         LayoutInflater inflater=(LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView=inflater.inflate(R.layout.activity_drum2,null);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mDrawerLayout.addView(contentView,0);
-
 
         ImageButton playD1 = (ImageButton) this.findViewById(R.id.d1);
         ImageButton playD2 = (ImageButton) this.findViewById(R.id.d2);
@@ -48,7 +49,6 @@ public class Drum2Activity extends NavActivity {
         sound_D3=soundPool.load(this,R.raw.d3,1);
         sound_D4=soundPool.load(this,R.raw.d4,1);
 
-
     }
 
     @Override
@@ -59,13 +59,32 @@ public class Drum2Activity extends NavActivity {
     }
 
 
-    public void playD1(View view){soundPool.play(sound_D1,1,1,1,0,1);}
-    public void playD2(View view){soundPool.play(sound_D2,1,1,1,0,1);}
-    public void playD3(View view){soundPool.play(sound_D3,1,1,1,0,1);}
-    public void playD4(View view){soundPool.play(sound_D4,1,1,1,0,1);}
-    public void playC1(View view){soundPool.play(sound_C1,1,1,1,0,1);}
-    public void playC2(View view){soundPool.play(sound_C2,1,1,1,0,1);}
-    public void playC3(View view){soundPool.play(sound_C3,1,1,1,0,1);}
-    public void playC4(View view){soundPool.play(sound_C4,1,1,1,0,1);}
-    public void playBass(View view){soundPool.play(sound_Bass,1,1,1,0,1);}
+    public void playD1(View view){soundPool.play(sound_D1,1,1,1,0,1);
+        D1check = true;
+    }
+    public void playD2(View view){soundPool.play(sound_D2,1,1,1,0,1);
+        D2check = true;
+    }
+    public void playD3(View view){soundPool.play(sound_D3,1,1,1,0,1);
+        D3check = true;
+    }
+    public void playD4(View view){soundPool.play(sound_D4,1,1,1,0,1);
+        D4check = true;
+    }
+
+    public void playC1(View view){soundPool.play(sound_C1,1,1,1,0,1);
+        C1check = true;
+    }
+    public void playC2(View view){soundPool.play(sound_C2,1,1,1,0,1);
+        C2check = true;
+    }
+    public void playC3(View view){soundPool.play(sound_C3,1,1,1,0,1);
+        C3check = true;
+    }
+    public void playC4(View view){soundPool.play(sound_C4,1,1,1,0,1);
+        C4check = true;
+    }
+    public void playBass(View view){soundPool.play(sound_Bass,1,1,1,0,1);
+        Basscheck = true;
+    }
 }
