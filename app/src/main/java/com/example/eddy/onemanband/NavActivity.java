@@ -105,6 +105,7 @@ public class NavActivity extends AppCompatActivity {
     public Boolean Ringcheck=false;
 
 
+
     private void textWriter(String filename, int type){
         try {
             Log.d("Last","Starting writing");
@@ -113,24 +114,27 @@ public class NavActivity extends AppCompatActivity {
             FileOutputStream fos = new FileOutputStream(file);
 
             if(type==0){
-                fos.write("Drum ".getBytes());
-                fos.write("Notes Count ".getBytes());
+                fos.write("Drum \n".getBytes());
+                fos.write("Notes Count \n".getBytes());
                 fos.write(String.valueOf((tempArray.size())/9).getBytes());
             }
             if(type==1){
-                fos.write("Piano ".getBytes());
-                fos.write("Notes Count ".getBytes());
+                fos.write("Piano \n".getBytes());
+                fos.write("Notes Count \n".getBytes());
                 fos.write(String.valueOf((tempArray.size())/7).getBytes());
             }
             if(type==2){
-                fos.write("Ring ".getBytes());
-                fos.write("Notes Count ".getBytes());
+                fos.write("Ring \n".getBytes());
+                fos.write("Notes Count \n".getBytes());
                 fos.write(String.valueOf((tempArray.size())).getBytes());
             }
 
             fos.write(" ".getBytes());
             for(int i=0;i<tempArray.size();i++){
                 fos.write(tempArray.get(i).getBytes());
+                if(tempArray.get(i).equals(" ")){
+                    fos.write("\n".getBytes());
+                }
             }
             fos.close();
             tempArray.clear();
@@ -142,6 +146,10 @@ public class NavActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Error saving", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void textReader(final String filename){
+
     }
 
     private void drumpWriter(final String filename){
