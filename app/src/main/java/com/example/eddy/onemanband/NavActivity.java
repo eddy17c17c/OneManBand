@@ -115,21 +115,21 @@ public class NavActivity extends AppCompatActivity {
 
             if(type==0){
                 fos.write("Drum \n".getBytes());
-                fos.write("Notes Count \n".getBytes());
-                fos.write(String.valueOf((tempArray.size())/9).getBytes());
+                //fos.write("Notes Count \n".getBytes());
+                //fos.write(String.valueOf((tempArray.size())/9).getBytes());
             }
             if(type==1){
                 fos.write("Piano \n".getBytes());
-                fos.write("Notes Count \n".getBytes());
-                fos.write(String.valueOf((tempArray.size())/7).getBytes());
+                //fos.write("Notes Count \n".getBytes());
+                //fos.write(String.valueOf((tempArray.size())/7).getBytes());
             }
             if(type==2){
                 fos.write("Ring \n".getBytes());
-                fos.write("Notes Count \n".getBytes());
-                fos.write(String.valueOf((tempArray.size())).getBytes());
+                //fos.write("Notes Count \n".getBytes());
+                //fos.write(String.valueOf((tempArray.size())).getBytes());
             }
-
-            fos.write(" ".getBytes());
+            fos.write(String.valueOf((tempArray.size())).getBytes());
+            fos.write("\n".getBytes());
             for(int i=0;i<tempArray.size();i++){
                 fos.write(tempArray.get(i).getBytes());
                 if(tempArray.get(i).equals(" ")){
