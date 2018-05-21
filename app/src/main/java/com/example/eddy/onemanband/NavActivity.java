@@ -2,6 +2,7 @@ package com.example.eddy.onemanband;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -26,9 +27,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.File;
@@ -48,6 +53,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.media.SoundPool;
 
 public class NavActivity extends AppCompatActivity {
 
@@ -68,11 +74,13 @@ public class NavActivity extends AppCompatActivity {
     File oldFile;
     File latestname;
     private String result;
+    private String result2;
     final Context context = this;
 
     Boolean RecorderStatus = false;
     Boolean WriterStatus = false;
-
+    Boolean RecorderCheck = false;
+    Boolean WriterCheck = false;
 //Drum
     public Boolean D1check=false;
     public Boolean D2check=false;
@@ -104,31 +112,37 @@ public class NavActivity extends AppCompatActivity {
 
     public Boolean Ringcheck=false;
 
+//Sound Pool
+
+    SoundPool soundPool,soundPool2,soundPool3;
+    int sound_C1,sound_C2,sound_C3,sound_C4,sound_Bass,sound_D1,sound_D2,sound_D3,sound_D4;
+    int sound_Do,sound_Re,sound_Mi,sound_Fa,sound_So,sound_La,sound_Ti;
+    int sound_ring;
+
+
 
 
     private void textWriter(String filename, int type){
         try {
             Log.d("Last","Starting writing");
             File file = new File(TxtSavePathInDevice);
-
             FileOutputStream fos = new FileOutputStream(file);
-
             if(type==0){
                 fos.write("Drum \n".getBytes());
                 //fos.write("Notes Count \n".getBytes());
-                //fos.write(String.valueOf((tempArray.size())/9).getBytes());
+                fos.write(String.valueOf((tempArray.size())/9).getBytes());
             }
             if(type==1){
                 fos.write("Piano \n".getBytes());
                 //fos.write("Notes Count \n".getBytes());
-                //fos.write(String.valueOf((tempArray.size())/7).getBytes());
+                fos.write(String.valueOf((tempArray.size())/7).getBytes());
             }
             if(type==2){
                 fos.write("Ring \n".getBytes());
                 //fos.write("Notes Count \n".getBytes());
-                //fos.write(String.valueOf((tempArray.size())).getBytes());
+                fos.write(String.valueOf((tempArray.size())).getBytes());
             }
-            fos.write(String.valueOf((tempArray.size())).getBytes());
+            //fos.write(String.valueOf((tempArray.size())).getBytes());
             fos.write("\n".getBytes());
             for(int i=0;i<tempArray.size();i++){
                 fos.write(tempArray.get(i).getBytes());
@@ -148,8 +162,132 @@ public class NavActivity extends AppCompatActivity {
         }
     }
 
-    private void textReader(final String filename){
+    String line = "";
+    BufferedReader br = null;
 
+    private void textReader(){
+        br = null;
+            try {
+            StringBuffer output = new StringBuffer();
+            String fpath = latestname.getPath();
+            br = new BufferedReader(new FileReader(fpath));
+            line = "";
+            line = br.readLine();
+            int noteCount=0;
+            final Handler handler = new Handler();
+            if(line.equals("Drum ")){
+                line = br.readLine();
+                noteCount=Integer.parseInt(line);
+                line = br.readLine();
+                handler.postDelayed(new Runnable(){
+                    public void run(){
+                        try {
+                            if(line.charAt(0)=='1'){
+                                soundPool.play(sound_D1,1,1,1,0,1);
+                            }
+                            if(line.charAt(1)=='1'){
+                                soundPool.play(sound_D2,1,1,1,0,1);
+                            }
+                            if(line.charAt(2)=='1'){
+                                soundPool.play(sound_D3,1,1,1,0,1);
+                            }
+                            if(line.charAt(3)=='1'){
+                                soundPool.play(sound_D4,1,1,1,0,1);
+                            }
+                            if(line.charAt(4)=='1'){
+                                soundPool.play(sound_C1,1,1,1,0,1);
+                            }
+                            if(line.charAt(5)=='1'){
+                                soundPool.play(sound_C2,1,1,1,0,1);
+                            }
+                            if(line.charAt(6)=='1'){
+                                soundPool.play(sound_C3,1,1,1,0,1);
+                            }
+                            if(line.charAt(7)=='1'){
+                                soundPool.play(sound_C4,1,1,1,0,1);
+                            }
+                            if(line.charAt(8)=='1'){
+                                soundPool.play(sound_Bass,1,1,1,0,1);
+                            }
+                            if((line = br.readLine()) != null) {
+                                handler.postDelayed(this, 100);
+                            }
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, 100);
+            }
+
+            if(line.equals("Piano ")){
+                line = br.readLine();
+                noteCount=Integer.parseInt(line);
+                line = br.readLine();
+                handler.postDelayed(new Runnable(){
+                    public void run(){
+                        try {
+                            if(line.charAt(0)=='1'){
+                                soundPool.play(sound_Do,1,1,1,0,1);
+                            }
+                            if(line.charAt(1)=='1'){
+                                soundPool.play(sound_Re,1,1,1,0,1);
+                            }
+                            if(line.charAt(2)=='1'){
+                                soundPool.play(sound_Mi,1,1,1,0,1);
+                            }
+                            if(line.charAt(3)=='1'){
+                                soundPool.play(sound_Fa,1,1,1,0,1);
+                            }
+                            if(line.charAt(4)=='1'){
+                                soundPool.play(sound_So,1,1,1,0,1);
+                            }
+                            if(line.charAt(5)=='1'){
+                                soundPool2.play(sound_La,1,1,1,0,1);
+                            }
+                            if(line.charAt(6)=='1'){
+                                soundPool2.play(sound_Ti,1,1,1,0,1);
+                            }
+
+                            if((line = br.readLine()) != null) {
+                                handler.postDelayed(this, 100);
+                            }
+
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, 100);
+            }
+
+            if(line.equals("Ring ")){
+                line = br.readLine();
+                noteCount=Integer.parseInt(line);
+                line = br.readLine();
+                handler.postDelayed(new Runnable(){
+                    public void run(){
+                        try {
+                            if(line.charAt(0)=='1'){
+                                soundPool2.play(sound_ring,1,1,1,0,1);
+                            }
+                            if((line = br.readLine()) != null) {
+                                handler.postDelayed(this, 100);
+                            }
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, 100);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void drumpWriter(final String filename){
@@ -205,6 +343,12 @@ public class NavActivity extends AppCompatActivity {
                 if (C4check == true) {
                     tempArray.add("1");
                     C4check=false;
+                } else {
+                    tempArray.add("0");
+                }
+                if (Basscheck == true) {
+                    tempArray.add("1");
+                    Basscheck=false;
                 } else {
                     tempArray.add("0");
                 }
@@ -312,6 +456,29 @@ public class NavActivity extends AppCompatActivity {
         Log.d("tempArraySize", String.valueOf(tempArray.size()));
     }
 
+    private void turnAllToFalse(){
+        Docheck=false;
+        Recheck=false;
+        Micheck=false;
+        Facheck=false;
+        Socheck=false;
+        Lacheck=false;
+        Ticheck=false;
+
+        D1check=false;
+        D2check=false;
+        D3check=false;
+        D4check=false;
+
+        C1check=false;
+        C2check=false;
+        C3check=false;
+        C4check=false;
+
+        Basscheck=false;
+        Ringcheck=false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -329,6 +496,65 @@ public class NavActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //crete nav_open button
 
+        //for the sound pool
+        soundPool=new SoundPool.Builder().setMaxStreams(30).build();
+        soundPool2=new SoundPool.Builder().setMaxStreams(30).build();
+        soundPool3=new SoundPool.Builder().setMaxStreams(30).build();
+
+        sound_C1=soundPool.load(this,R.raw.c1,1);
+        sound_C2=soundPool.load(this,R.raw.c2,1);
+        sound_C3=soundPool.load(this,R.raw.c3,1);
+        sound_C4=soundPool.load(this,R.raw.c4,1);
+        sound_Bass=soundPool.load(this,R.raw.bass,1);
+        sound_D1=soundPool.load(this,R.raw.d1,1);
+        sound_D2=soundPool.load(this,R.raw.d2,1);
+        sound_D3=soundPool.load(this,R.raw.d3,1);
+        sound_D4=soundPool.load(this,R.raw.d4,1);
+        sound_Do=soundPool.load(this,R.raw.do111,1);
+        sound_Re=soundPool.load(this,R.raw.re,1);
+        sound_Mi=soundPool.load(this,R.raw.mi,1);
+        sound_Fa=soundPool.load(this,R.raw.fa,1);
+        sound_So=soundPool.load(this,R.raw.so,1);
+
+        sound_La=soundPool2.load(this,R.raw.la,1);
+        sound_Ti=soundPool2.load(this,R.raw.ti,1);
+        sound_ring=soundPool2.load(this,R.raw.ring,1);
+
+/*        sound_C1=soundPool2.load(this,R.raw.c1,1);
+        sound_C2=soundPool2.load(this,R.raw.c2,1);
+        sound_C3=soundPool2.load(this,R.raw.c3,1);
+        sound_C4=soundPool2.load(this,R.raw.c4,1);
+        sound_Bass=soundPool2.load(this,R.raw.bass,1);
+        sound_D1=soundPool2.load(this,R.raw.d1,1);
+        sound_D2=soundPool2.load(this,R.raw.d2,1);
+        sound_D3=soundPool2.load(this,R.raw.d3,1);
+        sound_D4=soundPool2.load(this,R.raw.d4,1);
+        sound_Do=soundPool2.load(this,R.raw.do111,1);
+        sound_Re=soundPool2.load(this,R.raw.re,1);
+        sound_Mi=soundPool2.load(this,R.raw.mi,1);
+        sound_Fa=soundPool2.load(this,R.raw.fa,1);
+        sound_So=soundPool2.load(this,R.raw.so,1);
+        sound_La=soundPool2.load(this,R.raw.la,1);
+        sound_Ti=soundPool2.load(this,R.raw.ti,1);
+        sound_ring=soundPool2.load(this,R.raw.ring,1);
+
+        sound_C1=soundPool3.load(this,R.raw.c1,1);
+        sound_C2=soundPool3.load(this,R.raw.c2,1);
+        sound_C3=soundPool3.load(this,R.raw.c3,1);
+        sound_C4=soundPool3.load(this,R.raw.c4,1);
+        sound_Bass=soundPool3.load(this,R.raw.bass,1);
+        sound_D1=soundPool3.load(this,R.raw.d1,1);
+        sound_D2=soundPool3.load(this,R.raw.d2,1);
+        sound_D3=soundPool3.load(this,R.raw.d3,1);
+        sound_D4=soundPool3.load(this,R.raw.d4,1);
+        sound_Do=soundPool3.load(this,R.raw.do111,1);
+        sound_Re=soundPool3.load(this,R.raw.re,1);
+        sound_Mi=soundPool3.load(this,R.raw.mi,1);
+        sound_Fa=soundPool3.load(this,R.raw.fa,1);
+        sound_So=soundPool3.load(this,R.raw.so,1);
+        sound_La=soundPool2.load(this,R.raw.la,1);
+        sound_Ti=soundPool2.load(this,R.raw.ti,1);
+        sound_ring=soundPool2.load(this,R.raw.ring,1);*/
         //for nav_list buttons
         NavigationView navigationView=findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -375,7 +601,9 @@ public class NavActivity extends AppCompatActivity {
         random = new Random();
         switch(item.getItemId()){
             case R.id.action_record:
-                if(RecorderStatus==false){
+                if(RecorderStatus==false&&WriterStatus==false){
+                    WriterCheck=false;
+                    RecorderCheck=true;
                     RecorderStatus=true;
                     //to do
                     if(checkPermission()) {
@@ -409,17 +637,24 @@ public class NavActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_play:
-                mediaPlayer = new MediaPlayer();
-                try {
-                    mediaPlayer.setDataSource(latestname.getPath());
-                    mediaPlayer.prepare();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                if(RecorderCheck==true){
+                    mediaPlayer = new MediaPlayer();
+                    try {
+                        mediaPlayer.setDataSource(latestname.getPath());
+                        mediaPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
-                mediaPlayer.start();
-                Toast.makeText(NavActivity.this, "Recording Playing",
-                        Toast.LENGTH_LONG).show();
+                    mediaPlayer.start();
+                    Toast.makeText(NavActivity.this, "Recording Playing",
+                            Toast.LENGTH_LONG).show();
+                }
+                if(WriterCheck==true){
+                    textReader();
+                    Toast.makeText(NavActivity.this, "(Txt)Recording Playing",
+                            Toast.LENGTH_LONG).show();
+                }
                 return true;
 
             case R.id.action_stop:
@@ -479,9 +714,9 @@ public class NavActivity extends AppCompatActivity {
                                         public void onClick(DialogInterface dialog,int id) {
                                             // get user input and set it to result
                                             // edit text
-                                            result = userInput.getText().toString();
+                                            result2 = userInput.getText().toString();
                                             oldFile = new File(TxtSavePathInDevice);
-                                            latestname = new File(Environment.getExternalStorageDirectory().getPath()+"/Onemanband/"+result+".txt");
+                                            latestname = new File(Environment.getExternalStorageDirectory().getPath()+"/Onemanband/"+result2+".txt");
                                             boolean success = oldFile .renameTo(latestname );
                                         }
                                     });
@@ -496,7 +731,10 @@ public class NavActivity extends AppCompatActivity {
 
             case R.id.action_writer:
                 writer=true;
-                if(WriterStatus==false){
+                if(RecorderStatus==false&&WriterStatus==false){
+                    turnAllToFalse();
+                    RecorderCheck=false;
+                    WriterCheck=true;
                     WriterStatus=true;
                     if(checkPermission()) {
                         TxtSavePathInDevice =

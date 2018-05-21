@@ -14,8 +14,8 @@ import android.widget.ImageButton;
 
 public class Drum2Activity extends NavActivity {
 
-    private SoundPool soundPool;
-    int sound_C1,sound_C2,sound_C3,sound_C4,sound_Bass,sound_D1,sound_D2,sound_D3,sound_D4;
+   // private SoundPool soundPool;
+   // int sound_C1,sound_C2,sound_C3,sound_C4,sound_Bass,sound_D1,sound_D2,sound_D3,sound_D4;
 
     Boolean Basscheck=false;
 
@@ -38,16 +38,7 @@ public class Drum2Activity extends NavActivity {
         ImageButton playC3 = (ImageButton) this.findViewById(R.id.c3);
         ImageButton playC4 = (ImageButton) this.findViewById(R.id.c4);
 
-        soundPool=new SoundPool.Builder().setMaxStreams(9).build();
-        sound_C1=soundPool.load(this,R.raw.c1,1);
-        sound_C2=soundPool.load(this,R.raw.c2,1);
-        sound_C3=soundPool.load(this,R.raw.c3,1);
-        sound_C4=soundPool.load(this,R.raw.c4,1);
-        sound_Bass=soundPool.load(this,R.raw.bass,1);
-        sound_D1=soundPool.load(this,R.raw.d1,1);
-        sound_D2=soundPool.load(this,R.raw.d2,1);
-        sound_D3=soundPool.load(this,R.raw.d3,1);
-        sound_D4=soundPool.load(this,R.raw.d4,1);
+
 
     }
 

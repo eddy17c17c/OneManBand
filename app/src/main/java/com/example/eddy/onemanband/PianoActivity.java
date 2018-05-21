@@ -12,8 +12,8 @@ import android.view.View;
 
 public class PianoActivity extends NavActivity {
 
-    private SoundPool soundPool;
-    private int sound_Do,sound_Re,sound_Mi,sound_Fa,sound_So,sound_La,sound_Ti;
+   // private SoundPool soundPool;
+   // private int sound_Do,sound_Re,sound_Mi,sound_Fa,sound_So,sound_La,sound_Ti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +24,7 @@ public class PianoActivity extends NavActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mDrawerLayout.addView(contentView,0);
 
-        soundPool=new SoundPool.Builder().setMaxStreams(8).build();
-        sound_Do=soundPool.load(this,R.raw.do111,1);
-        sound_Re=soundPool.load(this,R.raw.re,1);
-        sound_Mi=soundPool.load(this,R.raw.mi,1);
-        sound_Fa=soundPool.load(this,R.raw.fa,1);
-        sound_So=soundPool.load(this,R.raw.so,1);
-        sound_La=soundPool.load(this,R.raw.la,1);
-        sound_Ti=soundPool.load(this,R.raw.ti,1);
+
 
 
     }
@@ -64,11 +57,11 @@ public class PianoActivity extends NavActivity {
         Socheck=true;
     }
     public void playLa(View view){
-        soundPool.play(sound_La,1,1,1,0,1);
+        soundPool2.play(sound_La,1,1,1,0,1);
         Lacheck=true;
     }
     public void playTi(View view){
-        soundPool.play(sound_Ti,1,1,1,0,1);
+        soundPool2.play(sound_Ti,1,1,1,0,1);
         Ticheck=true;
     }
 

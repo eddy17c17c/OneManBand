@@ -14,8 +14,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class RingActivity extends NavActivity {
-    private int sound_ring;
-    private SoundPool soundPool;
+    //private int sound_ring;
+    //private SoundPool soundPool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,8 @@ public class RingActivity extends NavActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mDrawerLayout.addView(contentView,0);
 
-        soundPool=new SoundPool.Builder().setMaxStreams(5).build();
-        sound_ring=soundPool.load(this,R.raw.ring,1);
+    //    soundPool=new SoundPool.Builder().setMaxStreams(5).build();
+    //    sound_ring=soundPool.load(this,R.raw.ring,1);
 
     }
 
@@ -39,7 +39,7 @@ public class RingActivity extends NavActivity {
     }
 
     public void playRing(View view){
-        soundPool.play(sound_ring,1,1,1,0,1);
+        soundPool2.play(sound_ring,1,1,1,0,1);
         Ringcheck=true;
     }
 
