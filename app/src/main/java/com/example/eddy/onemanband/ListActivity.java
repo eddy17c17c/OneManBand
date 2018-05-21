@@ -21,8 +21,9 @@ import java.util.concurrent.TimeUnit;
 public class ListActivity extends NavActivity {
 
     final Context context = this;
-    ListView musicList;
+    ListView musicList,durationList;
     String[] items;
+    String[] items2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class ListActivity extends NavActivity {
         setContentView(R.layout.activity_list);
 
         musicList = (ListView) findViewById(R.id.musicLV);
+        durationList=(ListView)findViewById(R.id.durationLV);
         showSong();
     }
 
@@ -68,8 +70,9 @@ public class ListActivity extends NavActivity {
                     br=new BufferedReader(new FileReader(songs.get(i).getPath()));
                     line=br.readLine();
                     line=br.readLine();
-                    minutes=Integer.parseInt(line)/60;
-                    seconds=Integer.parseInt(line)%60;
+                    duration=Integer.parseInt(line);
+                    minutes=(duration*10)/60;
+                    seconds=(duration*10)%60;
                     br.close();
                 }catch(Exception e){
 
@@ -81,11 +84,14 @@ public class ListActivity extends NavActivity {
                 minutes = (int) ((duration / 1000) / 60);
                 seconds = (int) ((duration / 1000) % 60);
             }
-            items[i] = songs.get(i).getName().toString()+"  Duration: "+minutes+" : "+seconds;
+            items[i] = songs.get(i).getName().toString();
+            items2[i]=" Duration: "+minutes+" : "+seconds;
         }
 
         ArrayAdapter<String> adp = new ArrayAdapter<String>(getApplicationContext(), R.layout.song_layout, R.id.textView, items);
+        ArrayAdapter<String>adp2=new ArrayAdapter<String>(getApplicationContext(),R.layout.song_layout,R.id.textView,items2);
         musicList.setAdapter(adp);
+        durationList.setAdapter(adp2);
 
     }
 }
