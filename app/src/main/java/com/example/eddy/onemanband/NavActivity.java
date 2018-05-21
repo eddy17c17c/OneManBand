@@ -165,11 +165,18 @@ public class NavActivity extends AppCompatActivity {
     String line = "";
     BufferedReader br = null;
 
-    private void textReader(){
+    private void textReader(File file2){
         br = null;
             try {
             StringBuffer output = new StringBuffer();
-            String fpath = latestname.getPath();
+            String fpath;
+                if(file2==null){
+                    fpath = latestname.getPath();
+            }
+            else{
+                    fpath = file2.getPath();
+                }
+
             br = new BufferedReader(new FileReader(fpath));
             line = "";
             line = br.readLine();
@@ -651,7 +658,7 @@ public class NavActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
                 if(WriterCheck==true){
-                    textReader();
+                    textReader(null);
                     Toast.makeText(NavActivity.this, "(Txt)Recording Playing",
                             Toast.LENGTH_LONG).show();
                 }
