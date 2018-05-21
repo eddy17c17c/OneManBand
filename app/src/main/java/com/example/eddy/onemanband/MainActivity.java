@@ -32,7 +32,7 @@ public class MainActivity extends NavActivity {
         ImageButton drumImageBtn=(ImageButton)findViewById(R.id.drumImageBtn);
         ImageButton pianoImageBtn=(ImageButton)findViewById(R.id.pianoImageBtn);
         ImageButton mixImageBtn=(ImageButton)findViewById(R.id.mixImageBtn);
-
+        ImageButton listImageBtn=(ImageButton) findViewById(R.id.listImageBtn);
 
 
         ringImageBtn.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +64,14 @@ public class MainActivity extends NavActivity {
             public void onClick(View v) {
                 Intent goToMixActivity=new Intent(getApplicationContext(),MixActivity.class);
                 startActivity(goToMixActivity);
+            }
+        });
+
+        listImageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToListActivity=new Intent(getApplicationContext(),ListActivity.class);
+                startActivity(goToListActivity);
             }
         });
 
