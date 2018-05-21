@@ -27,19 +27,13 @@ public class MainActivity extends NavActivity {
         mDrawerLayout.addView(contentView,0);
 
         //for buttons
-        ImageButton guitarImageBtn=(ImageButton)findViewById(R.id.guitarImageBtn);
+
         ImageButton ringImageBtn=(ImageButton)findViewById(R.id.ringImageBtn);
         ImageButton drumImageBtn=(ImageButton)findViewById(R.id.drumImageBtn);
         ImageButton pianoImageBtn=(ImageButton)findViewById(R.id.pianoImageBtn);
         ImageButton mixImageBtn=(ImageButton)findViewById(R.id.mixImageBtn);
 
-        guitarImageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToGuitarActivity=new Intent(getApplicationContext(),GuitarActivity.class);
-                startActivity(goToGuitarActivity);
-            }
-        });
+
 
         ringImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override

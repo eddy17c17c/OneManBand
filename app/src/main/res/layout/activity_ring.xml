@@ -5,6 +5,7 @@
     android:id="@+id/ringSoundBtn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/p4"
     tools:context=".RingActivity">
 
     <ImageButton
