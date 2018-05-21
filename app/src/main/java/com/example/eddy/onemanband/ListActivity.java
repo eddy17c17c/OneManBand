@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -63,6 +64,7 @@ public class ListActivity extends NavActivity {
         String root = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Onemanband";
         ArrayList<File> songs = findSongs(new File(root));
         items = new String[songs.size()];
+        items2 = new String[songs.size()];
 
         for (int i = 0; i < songs.size(); i++) {
             if(songs.get(i).getName().endsWith(".txt")){
@@ -85,7 +87,8 @@ public class ListActivity extends NavActivity {
                 seconds = (int) ((duration / 1000) % 60);
             }
             items[i] = songs.get(i).getName().toString();
-            items2[i]=" Duration: "+minutes+" : "+seconds;
+            items2[i]=" Duration: "+Integer.toString(minutes)+" : "+Integer.toString(seconds);
+
         }
 
         ArrayAdapter<String> adp = new ArrayAdapter<String>(getApplicationContext(), R.layout.song_layout, R.id.textView, items);
